@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { SvelteFlow, Background, MiniMap, Controls, Panel, addEdge } from '@xyflow/svelte';
+    import { SvelteFlow, SvelteFlowProvider, Background, MiniMap, Controls, Panel, addEdge, useSvelteFlow } from '@xyflow/svelte';
     import '@xyflow/svelte/dist/style.css';
     import ConstTextNode from '$lib/components/flow/const-text-node.svelte';
     import ConstNumberNode from '$lib/components/flow/const-number-node.svelte';
@@ -14,6 +14,7 @@
     import { Button } from '$lib/components/ui/button';
 	import WindowController from '@/components/window-controller.svelte';
     import { LayoutDashboard, Undo, Redo } from '@lucide/svelte';
+    import Toolbar from '$lib/components/flow/layouts/tool-bar.svelte';
     const nodeTypes = {
         constTextNode: ConstTextNode,
         constNumberNode: ConstNumberNode,
@@ -21,12 +22,13 @@
         displayTextNode: DisplayTextNode,
         displayNumberNode: DisplayNumberNode
     };
-    
-    let nodes = $state.raw([
+ 
+    let nodes = $state.raw<Node[]>([
         {
             id: '1',
             type: 'startNode',
             position: { x: 100, y: 150 },
+            dragHandle: '.drag-handle',
             data: {
                 //运行状态
                 runStatus: 'idle',
@@ -39,6 +41,7 @@
             id: '2',
             type: 'constTextNode',
             position: { x: 0, y: 0 },
+            dragHandle: '.drag-handle',
             data: { 
                 text: 'World'
             },
@@ -47,6 +50,7 @@
             id: '3',
             type: 'constNumberNode',
             position: { x: 100, y: 100 },
+            dragHandle: '.drag-handle',
             data: { 
                 number: 100,
             },
@@ -55,13 +59,15 @@
             id: '4',
             type: 'displayTextNode',
             position: { x: 100, y: 100 },
+            dragHandle: '.drag-handle',
             data: { text: 'Hello' },
         },
         {
             id: '5',
             type: 'displayNumberNode',
             position: { x: 100, y: 100 },
-            data: { value: 100 },
+            dragHandle: '.drag-handle',
+                data: { value: 100 },
         },
     ]);
     
@@ -169,7 +175,9 @@
         return 3;
     }
 
-    function layoutWithDagre(nodes: Node[], edges: Edge[], direction = 'LR') {
+  
+
+    function layoutWithDagre(nodes: Node[], edges: Edge[], direction = 'LR'):Node[] {
         const g = new dagre.graphlib.Graph();
         g.setGraph({
             rankdir: direction,
@@ -208,7 +216,7 @@
         }
 
         dagre.layout(g);
-
+        // 不再在这里调用 fitView
         return nodes.map(node => {
             const dagreNode = g.node(node.id);
             if (!dagreNode) return node;
@@ -221,50 +229,32 @@
             };
         });
     }
+
 </script>
 
 <div class="h-full w-full">
-    <SvelteFlow
-        {nodeTypes}
-        {edgeTypes}
-        bind:nodes
-        bind:edges
-        fitView
-       
-        {isValidConnection}
-        onconnect={handleConnect}
-    >
-        <MiniMap />
-        <Controls />
-        <Background />
-        
-        <Panel position="top-center">
-            <div class="flex items-center justify-between w-screen max-w-3xl mx-auto px-6 py-2 bg-white/80 backdrop-blur-md rounded-xl shadow border border-gray-200" data-tauri-drag-region>
-                
-                <!-- 中间：工具按钮组 -->
-                <div class="flex items-center gap-1" data-tauri-drag-region>
-                    <Button variant="ghost" class="flex items-center gap-1 px-3 py-1.5 rounded-lg hover:bg-gray-100 transition"
-                        onclick={() => { nodes = layoutWithDagre(nodes, edges) as any; }}>
-                        <LayoutDashboard class="w-5 h-5" />
-                        <span>自动排序</span>
-                    </Button>
-                    <Button variant="ghost" class="flex items-center gap-1 px-3 py-1.5 rounded-lg hover:bg-gray-100 transition"
-                        onclick={() => {/* 撤销逻辑 */}}>
-                        <Undo class="w-5 h-5" />
-                        <span>撤销</span>
-                    </Button>
-                    <Button variant="ghost" class="flex items-center gap-1 px-3 py-1.5 rounded-lg hover:bg-gray-100 transition"
-                        onclick={() => {/* 重做逻辑 */}}>
-                        <Redo class="w-5 h-5" />
-                        <span>重做</span>
-                    </Button>
-                    <!-- 可继续添加更多按钮 -->
+    
+        <SvelteFlow
+            {nodeTypes}
+            {edgeTypes}
+            bind:nodes
+            bind:edges
+            fitView
+            {isValidConnection}
+            onconnect={handleConnect}
+        >
+            <MiniMap />
+            <Controls />
+            <Background />
+            <Panel position="top-center">
+                <div class="flex items-center justify-between w-screen max-w-3xl mx-auto px-6 py-2 bg-white/80 backdrop-blur-md rounded-xl shadow border border-gray-200" data-tauri-drag-region>
+                    <Toolbar {layoutWithDagre} {nodes} {edges} setNodes={v => nodes = v} />
+                    <!-- 右侧：窗口控制器 -->
+                    <div class="flex items-center min-w-[80px] justify-end">
+                        <WindowController />
+                    </div>
                 </div>
-                <!-- 右侧：窗口控制器 -->
-                <div class="flex items-center min-w-[80px] justify-end">
-                    <WindowController />
-                </div>
-            </div>
-        </Panel>
-    </SvelteFlow>
+            </Panel>
+        </SvelteFlow>
+    
 </div>

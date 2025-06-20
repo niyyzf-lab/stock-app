@@ -38,7 +38,7 @@
 <Card.Root data-selected={selected} data-id={id} class={cn('p-0 gap-0 [data-selected=true]:border-primary ', className)}>
 	
 		<Card.Header
-			class={cn('p-2 px-0 bg-accent rounded-t-[calc(var(--radius)+3px)]', title && description ? 'gap-1' : 'gap-0', actions && 'flex items-center justify-between')}
+			class={cn('p-2 px-0 bg-accent rounded-t-[calc(var(--radius)+3px)] drag-handle', title && description ? 'gap-1' : 'gap-0', actions && 'flex items-center justify-between')}
 		>
             <!-- 触发手柄 -->
            <div class=" relative mr-2">
@@ -69,7 +69,7 @@
                </div>
 		</Card.Header>
 	
-	<Card.Content class="p-0 relative">
+	<Card.Content class="p-0 relative cursor-default">
 		{@render children?.()}
         {#if dev}
            <div class="text-xs text-muted-foreground px-2 pb-1"> 

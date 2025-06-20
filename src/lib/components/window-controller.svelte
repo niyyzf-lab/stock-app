@@ -57,7 +57,7 @@
     onclick={() => windowStore.toggleMinimize()}
     title="最小化"
   >
-    <svelte:component this={icons.minimize} class="size-4" strokeWidth={1.5} />
+    <icons.minimize class="size-4" strokeWidth={1.5} />
   </button>
   
   <!-- 最大化/还原按钮 -->
@@ -66,7 +66,7 @@
     onclick={() => windowStore.toggleMaximize()}
     title={isMaximized ? "还原" : "最大化"}
   >
-    <svelte:component this={isMaximized ? icons.restore : icons.maximize} class="size-4" strokeWidth={1.5} />
+    <icons.restore class="size-4" strokeWidth={1.5} />
   </button>
   
   <!-- 关闭按钮 -->
@@ -75,6 +75,6 @@
     onclick={() => windowStore.toggleClose()}
     title="关闭"
   >
-    <svelte:component this={icons.close} class="size-4" strokeWidth={1.5} />
+    <icons.close class="size-4" strokeWidth={1.5} />
   </button>
 </div> 
