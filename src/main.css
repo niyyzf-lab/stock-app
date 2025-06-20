@@ -1,13 +1,14 @@
-*{
+/* *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
+} */
 
-body{
-  
+html,body{
+    background-color: transparent;
     height: 100svh;
     width: 100svw;
     
 }
 
+@import "./app.css";
