@@ -60,7 +60,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tagName: ${{ github.ref_name }}
-          releaseName: 'Stock App v${{ github.ref_name }}'
+          releaseName: 'Stock App ${{ github.ref_name }}'
           releaseBody: '请查看资源以下载并安装此版本。'
-          releaseDraft: true
+          releaseDraft: false
           prerelease: false
