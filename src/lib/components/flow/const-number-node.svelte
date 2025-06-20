@@ -3,10 +3,11 @@
     import NumberInputWithButton from "$lib/components/inputs/number-input-with-button.svelte";
     import { Handle, Position, type NodeProps, useSvelteFlow } from "@xyflow/svelte";
     import { Button } from "../ui/button";
+    import * as DropdownMenu from "@ui/dropdown-menu"
     import { MoreHorizontalIcon } from "@lucide/svelte";
-    import * as DropdownMenu from "$lib/components/ui/dropdown-menu";
     let { id, data, selected }: NodeProps = $props();
     let { updateNodeData } = useSvelteFlow();
+
 </script>
 
 <BaseNode id={id} data={data} selected={selected} className="w-50" hideRightHandle hideLeftHandle title="数值节点" description="请输入常量数值">

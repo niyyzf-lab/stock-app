@@ -1,15 +1,12 @@
 <script lang="ts">
     import BaseNode from "./base-node.svelte";
-    import { Input } from "$lib/components/ui/input";
-    import { Handle, Position, type NodeProps, useSvelteFlow } from "@xyflow/svelte";
+    import { type NodeProps, useSvelteFlow } from "@xyflow/svelte";
     import { Button } from "../ui/button";
-    import { MoreHorizontalIcon, PlayIcon, CircleSlashIcon } from "@lucide/svelte";
-    import * as DropdownMenu from "$lib/components/ui/dropdown-menu";
+    import { PlayIcon, CircleSlashIcon } from "@lucide/svelte";
     import { Badge } from "../ui/badge";
     
     let { id, data, selected }: NodeProps = $props();
-    let { updateNodeData } = useSvelteFlow();
-    
+
     // 定义运行状态样式映射
     type StatusType = 'idle' | 'running' | 'completed' | 'error';
     
@@ -25,7 +22,7 @@
     <div class="flex flex-col gap-3 p-4">
         <div class="flex items-center justify-between">
             <div class="flex items-center gap-2">
-                <div class={`size-3 rounded-full ${data.runStatus ? statusColors[data.runStatus as StatusType] : statusColors.idle}`}></div>
+                <div class={`size-3 rounded-full ${data.runStatus ? statusColors[data.runStatus as StatusType  ] : statusColors.idle}`}></div>
                 <span class="text-sm font-medium">状态: {data.runStatus || "未运行"}</span>
             </div>
             <Badge variant="outline" class="text-xs">{data.runTime || "0s"}</Badge>

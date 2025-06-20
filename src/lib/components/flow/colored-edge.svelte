@@ -46,15 +46,6 @@
   const edgeColor = isExecEdge
     ? '#888'
     : colorMap[type as keyof typeof colorMap] ?? '#888';
-  // exec 边用 class 控制动画
-  const edgeClass = isExecEdge ? 'exec-animated-edge' : '';
-  // 如果 labelHovered 或 selected，就用红色、虚线并加动画，否则按原样
-  const edgeStyle = selected
-    ? 'stroke: #ef4444; stroke-width: 2; stroke-dasharray: 8 4; animation: dashmove 1s linear infinite;'
-    : (isExecEdge
-        ? 'stroke: #888; stroke-width: 2; stroke-dasharray: 8 4; stroke-dashoffset: 0;'
-        : `stroke: ${edgeColor}; stroke-width: 2;`
-      );
 
   const [edgePath, labelX, labelY] = $derived(getBezierPath({ 
     sourceX, 
@@ -90,17 +81,12 @@
 </script>
 
 <style>
-  @keyframes dashmove {
+  @keyframes dash-move {
     to {
       stroke-dashoffset: -24;
     }
   }
-  .edge-animated-red {
-    stroke: #ef4444 !important;
-    stroke-width: 2;
-    stroke-dasharray: 8 4;
-    animation: dashmove 1s linear infinite;
-  }
+  
 </style>
 
 <BaseEdge

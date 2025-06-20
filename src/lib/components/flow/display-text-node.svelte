@@ -1,12 +1,11 @@
 <script lang="ts">
     import BaseNode from "./base-node.svelte";
-    import { Input } from "$lib/components/ui/input";
-    import { Handle, Position, type NodeProps, useSvelteFlow } from "@xyflow/svelte";
+    import { Handle, Position, type NodeProps } from "@xyflow/svelte";
     import { Button } from "../ui/button";
     import { MoreHorizontalIcon } from "@lucide/svelte";
-    import * as DropdownMenu from "$lib/components/ui/dropdown-menu";
+    import * as DropdownMenu from "@ui/dropdown-menu"
     let { id, data, selected }: NodeProps = $props();
-    // let { updateNodeData } = useSvelteFlow();
+
 </script>
 
 <BaseNode id={id} data={data} selected={selected} className="min-w-60"  title="显示文本" description="显示文本内容">
