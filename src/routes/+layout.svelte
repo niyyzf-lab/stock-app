@@ -24,9 +24,7 @@
    
 </script>
 
-<div class={`h-full  ${isMaximized ? 'p-0 bg-background dark:bg-background' : 'p-2.5'}`}>
-    <div class={`h-full w-full overflow-hidden bg-card  ${isMaximized ? 'rounded-none' : 'rounded-lg'} shadow-[0_4px_10px_rgba(0,0,0,0.15),0_0_2px_rgba(0,0,0,0.2),inset_0_1px_5px_rgba(255,255,255,0.9)]`}>
-        <Toaster />
-        {@render children?.()}
-    </div>
+<Toaster />
+<div class="h-screen w-screen bg-background">
+    {@render children?.()}
 </div>

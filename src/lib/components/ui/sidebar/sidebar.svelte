@@ -4,7 +4,7 @@
 	import type { HTMLAttributes } from "svelte/elements";
 	import { SIDEBAR_WIDTH_MOBILE } from "./constants.js";
 	import { useSidebar } from "./context.svelte.js";
-	import { windowState } from "@/stores/windowStore.svelte";
+	
 	let {
 		ref = $bindable(null),
 		side = "left",
@@ -18,7 +18,7 @@
 		variant?: "sidebar" | "floating" | "inset";
 		collapsible?: "offcanvas" | "icon" | "none";
 	} = $props();
-	const isMaximized = $derived(windowState.isMaximized);
+	
 	const sidebar = useSidebar();
 </script>
 
@@ -80,8 +80,8 @@
 		<div
 			data-slot="sidebar-container"
 			class={cn(
-				"w-(--sidebar-width) fixed inset-y-0 z-10 hidden    overflow-hidden transition-[left,right,width] duration-200 ease-linear md:flex",
-				isMaximized ? "h-svh " : "h-[calc(100vh-20px)] m-2.5 mr-0 rounded-lg rounded-r-none",
+				"w-(--sidebar-width) fixed inset-y-0 z-10 hidden h-svh overflow-hidden transition-[left,right,width] duration-200 ease-linear md:flex",
+				
 				side === "left"
 					? "left-0 group-data-[collapsible=offcanvas]:left-[calc(var(--sidebar-width)*-1)]"
 					: "right-0 group-data-[collapsible=offcanvas]:right-[calc(var(--sidebar-width)*-1)]",
