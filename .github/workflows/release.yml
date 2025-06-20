@@ -40,6 +40,17 @@ jobs:
         with:
           workspaces: './src-tauri -> target'
 
+      - name: Cache AppImage tools
+        if: matrix.platform == 'ubuntu-22.04'
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.cache/tauri-action
+            ~/.cache/appimage-builder
+          key: ${{ runner.os }}-appimage-tools-${{ hashFiles('src-tauri/tauri.conf.json') }}
+          restore-keys: |
+            ${{ runner.os }}-appimage-tools-
+
       - name: Install frontend dependencies
         run: bun install
 
