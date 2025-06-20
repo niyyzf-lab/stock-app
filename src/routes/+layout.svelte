@@ -80,6 +80,9 @@
         padding: 0;
         background-color: #000;
     }
+    .maximized .content{
+        border-radius: 0;
+    }
     
     .header{
         background-color: #000;
