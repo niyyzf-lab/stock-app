@@ -12,10 +12,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        platform: [macos-latest, ubuntu-22.04, windows-latest]
-        include:
-          - platform: macos-latest
-            args: --target universal-apple-darwin
+        platform: [ubuntu-22.04, windows-latest]
 
     runs-on: ${{ matrix.platform }}
 
@@ -37,8 +34,6 @@ jobs:
 
       - name: Install Rust stable
         uses: dtolnay/rust-toolchain@stable
-        with:
-          targets: ${{ matrix.platform == 'macos-latest' && 'aarch64-apple-darwin,x86_64-apple-darwin' || '' }}
 
       - name: Rust cache
         uses: swatinem/rust-cache@v2
@@ -58,4 +53,3 @@ jobs:
           releaseBody: '请查看资源以下载并安装此版本。'
           releaseDraft: true
           prerelease: false
-          args: ${{ matrix.args }} 

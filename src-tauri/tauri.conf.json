@@ -35,21 +35,6 @@
       "icons/128x128@2x.png",
       "icons/icon.icns",
       "icons/icon.ico"
-    ],
-    "macOS": {
-      "minimumSystemVersion": "10.13",
-      "exceptionDomain": "",
-      "signingIdentity": null,
-      "entitlements": null,
-      "frameworks": [],
-      "providerShortName": null,
-      "dmg": {
-        "background": null,
-        "window": {
-          "width": 600,
-          "height": 400
-        }
-      }
-    }
+    ]
   }
 }
