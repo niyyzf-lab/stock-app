@@ -1,7 +1,7 @@
 {
   "$schema": "../node_modules/@tauri-apps/cli/config.schema.json",
   "productName": "stock-app",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "identifier": "com.stock.app",
   "build": {
     "frontendDist": "../build",
@@ -13,8 +13,20 @@
     "windows": [
       {
         "title": "stock-app",
+        "label": "main",
         "width": 800,
         "height": 600,
+        "resizable": true,
+        "fullscreen": false,
+        "decorations": false,
+        "transparent": true,
+        "shadow":false
+      },{
+        "title":"流程编辑器",
+        "label": "flow",
+        "url":"/flow",
+        "width": 1200,
+        "height": 800,
         "resizable": true,
         "fullscreen": false,
         "decorations": false,

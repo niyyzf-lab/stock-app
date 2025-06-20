@@ -1,5 +1,11 @@
 <script lang="ts">
-    import { Button } from "@ui/button";
+    import { onMount } from "svelte";
+    import { goto } from "$app/navigation";
+    onMount(() => {
+        goto("/work-space");
+    });
 </script>
 
-<Button>Click me</Button>
+<div>
+    <h1>Hello World</h1>
+</div>
