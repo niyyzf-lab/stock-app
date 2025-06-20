@@ -7,42 +7,16 @@
 	import * as Breadcrumb from "$lib/components/ui/breadcrumb/index.js";
 	import { Separator } from "$lib/components/ui/separator/index.js";
 	import * as Sidebar from "$lib/components/ui/sidebar/index.js";
-    
+    import { windowState, windowStore } from "@/stores/windowStore.svelte";
+    import WindowController from "$lib/components/window-controller.svelte";
     // 修复 children 声明问题
     const props = $props();
     const children = $derived(props.children);
     
-    let isMaximized = $state(false);
-    let showAlert = $state(true);
+    let isMaximized = $derived(windowState.isMaximized);
     
     onMount(() => {
-        const window = getCurrentWindow();
-        
-        // Get initial maximized state
-        window.isMaximized().then((maximized) => {
-            isMaximized = maximized;
-            
-        });
-        
-        // Listen for window resize events (including maximize/minimize)
-        let unlisten: (() => void) | undefined;
-        window.onResized(() => {
-            window.isMaximized().then((maximized) => {
-                isMaximized = maximized;
-                
-            });
-        }).then(unlistenFn => {
-            unlisten = unlistenFn;
-        });
-        
-        return () => {
-            // Clean up listener when component is destroyed
-            unlisten && unlisten();
-        };
-    });
-    
-    $effect(() => {
-        console.log('Window maximized state:', isMaximized);
+        windowStore.initialize();
     });
     
     
@@ -68,6 +42,9 @@
                             </Breadcrumb.Item>
                         </Breadcrumb.List>
                     </Breadcrumb.Root>
+                    <div class="ml-auto">
+                        <WindowController />
+                    </div>
                 </header>
                 <div class="flex flex-1 flex-col gap-4 p-4">
                    {@render children?.()}
