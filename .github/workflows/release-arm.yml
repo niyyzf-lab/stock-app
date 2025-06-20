@@ -59,13 +59,12 @@ jobs:
             . "$HOME/.cargo/env"
             curl -fsSL https://deb.nodesource.com/setup_lts.x | bash
             apt-get install -y nodejs
-            npm install -g bun
 
             # Install frontend dependencies
-            bun install
+            npm install
 
             # Build the application
-            bun run tauri build -- --verbose
+            npm run tauri build -- --verbose
 
       - name: Get app version
         run: echo "APP_VERSION=$(jq -r .version src-tauri/tauri.conf.json)" >> $GITHUB_ENV
