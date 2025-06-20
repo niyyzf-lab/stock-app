@@ -86,12 +86,6 @@ git tag v0.1.0
 git push origin v0.1.0
 ```
 
-### ARM 构建工作流
-
-除了标准平台外，我们还配置了 ARM 架构的构建工作流，用于支持 ARM 设备（如树莓派）。
-
-这个工作流会在推送标签时自动运行，或者可以在 GitHub Actions 页面手动触发。
-
 ## 权限设置
 
 确保在 GitHub 仓库设置中为 GitHub Actions 提供了足够的权限：
