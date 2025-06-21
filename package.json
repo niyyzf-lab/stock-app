@@ -12,8 +12,7 @@
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"format": "prettier --write .",
 		"lint": "prettier --check . && eslint .",
-		"update-version": "node update-version.js",
-		"tag-and-bump": "node tag-and-bump.js"
+		"tag": "node tag-and-bump.js"
 	},
 	"devDependencies": {
 		"@eslint/compat": "^1.2.5",
