@@ -22,4 +22,11 @@ Thumbs.db
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 
+# .NET
+src-dotnet/App.TauriPlugIn/bin/
+src-dotnet/App.TauriPlugIn/obj/
+
+# Rider/IDEA
+src-dotnet/App.TauriPlugIn/.idea/
+
 

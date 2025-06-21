@@ -1,13 +1,13 @@
 {
   "$schema": "../node_modules/@tauri-apps/cli/config.schema.json",
   "productName": "stock-app",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "identifier": "com.stock.app",
   "build": {
     "frontendDist": "../build",
     "devUrl": "http://localhost:5173",
-    "beforeDevCommand": "bun run dev",
-    "beforeBuildCommand": "bun run build"
+    "beforeDevCommand": "dotnet build src-dotnet/App.TauriPlugIn/App.TauriPlugIn.sln && bun run dev",
+    "beforeBuildCommand": "dotnet build -c Release src-dotnet/App.TauriPlugIn/App.TauriPlugIn.sln && bun run build"
   },
   "app": {
     "windows": [
