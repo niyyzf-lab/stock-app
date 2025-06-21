@@ -1,14 +1,22 @@
 <script lang="ts" module>
-	import AudioWaveformIcon from "@lucide/svelte/icons/audio-waveform";
-	import BookOpenIcon from "@lucide/svelte/icons/book-open";
-	import BotIcon from "@lucide/svelte/icons/bot";
-	import ChartPieIcon from "@lucide/svelte/icons/chart-pie";
-	import CommandIcon from "@lucide/svelte/icons/command";
-	import FrameIcon from "@lucide/svelte/icons/frame";
-	import GalleryVerticalEndIcon from "@lucide/svelte/icons/gallery-vertical-end";
-	import MapIcon from "@lucide/svelte/icons/map";
-	import Settings2Icon from "@lucide/svelte/icons/settings-2";
-	import SquareTerminalIcon from "@lucide/svelte/icons/square-terminal";
+	import {
+		AudioWaveform as AudioWaveformIcon,
+		BanknoteArrowUp,
+		BookOpen as BookOpenIcon,
+		Bot,
+		Bot as BotIcon,
+		Building2,
+		ChartNoAxesGantt,
+		ChartPie as ChartPieIcon,
+		Command as CommandIcon,
+		Frame as FrameIcon,
+		GalleryVerticalEnd as GalleryVerticalEndIcon,
+		Layers,
+		Map as MapIcon,
+		Settings2 as Settings2Icon,
+		SquareActivity,
+		SquareTerminal as SquareTerminalIcon
+	} from "@lucide/svelte/icons";
 
 	// This is sample data.
 	const data = {
@@ -36,88 +44,16 @@
 		],
 		navMain: [
 			{
-				title: "Playground",
-				url: "#",
-				icon: SquareTerminalIcon,
-				isActive: true,
+				title: "股票",
+				url: "/work-space/stock",
+				icon: Layers,
+				isActive: false,
 				items: [
-					{
-						title: "流程",
-						url: "/flow",
-					},
-					{
-						title: "Starred",
-						url: "#",
-					},
-					{
-						title: "Settings",
-						url: "#",
-					},
-				],
-			},
-			{
-				title: "Models",
-				url: "#",
-				icon: BotIcon,
-				items: [
-					{
-						title: "Genesis",
-						url: "#",
-					},
-					{
-						title: "Explorer",
-						url: "#",
-					},
-					{
-						title: "Quantum",
-						url: "#",
-					},
-				],
-			},
-			{
-				title: "Documentation",
-				url: "#",
-				icon: BookOpenIcon,
-				items: [
-					{
-						title: "Introduction",
-						url: "#",
-					},
-					{
-						title: "Get Started",
-						url: "#",
-					},
-					{
-						title: "Tutorials",
-						url: "#",
-					},
-					{
-						title: "Changelog",
-						url: "#",
-					},
-				],
-			},
-			{
-				title: "Settings",
-				url: "#",
-				icon: Settings2Icon,
-				items: [
-					{
-						title: "General",
-						url: "#",
-					},
-					{
-						title: "Team",
-						url: "#",
-					},
-					{
-						title: "Billing",
-						url: "#",
-					},
-					{
-						title: "Limits",
-						url: "#",
-					},
+					{ title: "公司", url: "/work-space/stock/company", icon: Building2  },
+					{ title: "榜单", url: "/work-space/stock/rank", icon: ChartNoAxesGantt },
+					{ title: "行业", url: "/work-space/stock/industry", icon: ChartPieIcon },
+					{ title: "财报", url: "/work-space/stock/report", icon: BanknoteArrowUp  },
+					{ title: "公告", url: "/work-space/stock/notice", icon: BookOpenIcon },
 				],
 			},
 		],

@@ -1,10 +1,10 @@
 <script lang="ts">
-	import * as Collapsible from "$lib/components/ui/collapsible/index.js";
-	import * as Sidebar from "$lib/components/ui/sidebar/index.js";
-	import ChevronRightIcon from "@lucide/svelte/icons/chevron-right";
+	import * as Collapsible from '$lib/components/ui/collapsible/index.js';
+	import * as Sidebar from '$lib/components/ui/sidebar/index.js';
+	import ChevronRightIcon from '@lucide/svelte/icons/chevron-right';
 
 	let {
-		items,
+		items
 	}: {
 		items: {
 			title: string;
@@ -16,6 +16,7 @@
 			items?: {
 				title: string;
 				url: string;
+				icon?:any;
 			}[];
 		}[];
 	} = $props();
@@ -47,9 +48,14 @@
 									<Sidebar.MenuSubItem>
 										<Sidebar.MenuSubButton>
 											{#snippet child({ props })}
+										
 												<a href={subItem.url} {...props}>
+													{#if subItem.icon}
+													<subItem.icon class="size-5" />
+												{/if}
 													<span>{subItem.title}</span>
 												</a>
+												
 											{/snippet}
 										</Sidebar.MenuSubButton>
 									</Sidebar.MenuSubItem>
