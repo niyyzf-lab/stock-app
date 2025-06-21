@@ -29,6 +29,6 @@ src-dotnet/App.TauriPlugIn/obj/
 # Rider/IDEA
 src-dotnet/App.TauriPlugIn/.idea/
 
-src-tauri/lib/
+src-tauri/dotnet/
 
 
