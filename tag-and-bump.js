@@ -37,6 +37,11 @@ console.log(`tauri.conf.json 和 Cargo.toml 版本号已递增为: ${newVersion}
 
 const tagName = `v${newVersion}`;
 try {
+  // 先提交并推送版本号变更
+  execSync(`git add ${tauriConfPath} ${cargoTomlPath}`);
+  execSync(`git commit -m "chore: bump version to ${newVersion}"`);
+  execSync(`git push`);
+  // 再打 tag 并推送 tag
   execSync(`git tag ${tagName}`);
   execSync(`git push origin ${tagName}`);
   console.log(`已创建 git tag: ${tagName} 并推送到远程`);
