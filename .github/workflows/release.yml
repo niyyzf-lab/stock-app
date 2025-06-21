@@ -77,6 +77,11 @@ jobs:
       - name: Install frontend dependencies
         run: bun install
 
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
       - name: Build the app
         uses: tauri-apps/tauri-action@v0
         env:
