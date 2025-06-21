@@ -32,7 +32,8 @@
         "minHeight": 800,
         "resizable": true,
         "fullscreen": false,
-        "decorations": false
+        "decorations": false,
+        "visible": false
       }
     ],
     "security": {
@@ -50,7 +51,7 @@
       "icons/icon.ico"
     ],
     "resources":[
-      "dotnet/"
+      "lib/"
     ]
   }
 }
