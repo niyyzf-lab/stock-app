@@ -9,7 +9,9 @@
         <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
     </PropertyGroup>
     <ItemGroup>
+        <PackageReference Include="ini-parser" Version="2.5.2" />
         <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.1" />
+        <PackageReference Include="System.Text.Json" Version="9.0.6" />
         <PackageReference Include="TauriDotNetBridge" Version="2.2.0" />
     </ItemGroup>
     <ItemGroup>

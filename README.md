@@ -92,3 +92,31 @@ git push origin v0.1.0
 
 1. 进入仓库设置 -> Actions -> General
 2. 在 "Workflow permissions" 部分，选择 "Read and write permissions"
+
+## 启动 .NET 插件时避免本地化资源 DLL 报错
+
+如果遇到类似如下报错：
+
+```
+System.IO.FileNotFoundException: Could not load file or assembly 'Microsoft.Extensions.DependencyInjection.resources, Version=8.0.0.0, Culture=zh-CN, ...
+```
+
+请在启动命令前设置环境变量，强制 .NET 使用英文环境：
+
+**Windows PowerShell/命令行：**
+
+```
+$env:DOTNET_CLI_UI_LANGUAGE="en-US"
+$env:DOTNET_CLI_LOCALE="en-US"
+bun run dev
+```
+
+**Windows CMD：**
+
+```
+set DOTNET_CLI_UI_LANGUAGE=en-US
+set DOTNET_CLI_LOCALE=en-US
+bun run dev
+```
+
+这样可避免 .NET 查找中文本地化资源 DLL，彻底解决此类报错。
